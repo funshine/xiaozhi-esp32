@@ -125,6 +125,17 @@ WebSocket* WifiBoard::CreateWebSocket() {
     return nullptr;
 }
 
+WebSocket* WifiBoard::CreateWebSocket(std::string url) {
+#ifdef CONFIG_CONNECTION_TYPE_WEBSOCKET
+    if (url.find("wss://") == 0) {
+        return new WebSocket(new TlsTransport());
+    } else {
+        return new WebSocket(new TcpTransport());
+    }
+#endif
+    return nullptr;
+}
+
 Mqtt* WifiBoard::CreateMqtt() {
     return new EspMqtt();
 }

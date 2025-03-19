@@ -61,9 +61,9 @@ bool WebsocketProtocol::OpenAudioChannel() {
     }
 
     error_occurred_ = false;
-    std::string url = CONFIG_WEBSOCKET_URL;
+    // std::string url = CONFIG_WEBSOCKET_URL;
     std::string token = "Bearer " + std::string(CONFIG_WEBSOCKET_ACCESS_TOKEN);
-    websocket_ = Board::GetInstance().CreateWebSocket();
+    websocket_ = Board::GetInstance().CreateWebSocket(url_);
     websocket_->SetHeader("Authorization", token.c_str());
     websocket_->SetHeader("Protocol-Version", "1");
     websocket_->SetHeader("Device-Id", SystemInfo::GetMacAddress().c_str());
@@ -101,9 +101,11 @@ bool WebsocketProtocol::OpenAudioChannel() {
         }
     });
 
-    if (!websocket_->Connect(url.c_str())) {
+    if (!websocket_->Connect(url_.c_str())) {
         ESP_LOGE(TAG, "Failed to connect to websocket server");
         SetError(Lang::Strings::SERVER_NOT_FOUND);
+        url_ = CONFIG_WEBSOCKET_URL;
+        ESP_LOGE(TAG, "Fallback to cloud websocket server");
         return false;
     }
 

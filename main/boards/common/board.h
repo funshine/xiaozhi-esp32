@@ -41,6 +41,7 @@ public:
     virtual Display* GetDisplay();
     virtual Http* CreateHttp() = 0;
     virtual WebSocket* CreateWebSocket() = 0;
+    virtual WebSocket* CreateWebSocket(std::string url) = 0;
     virtual Mqtt* CreateMqtt() = 0;
     virtual Udp* CreateUdp() = 0;
     virtual void StartNetwork() = 0;
