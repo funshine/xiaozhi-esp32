@@ -24,7 +24,9 @@ public:
 private:
     EventGroupHandle_t event_group_handle_;
     WebSocket* websocket_ = nullptr;
+#ifdef CONFIG_CONNECTION_TYPE_WEBSOCKET
     std::string url_ = CONFIG_WEBSOCKET_URL_TEST;
+#endif
 
     void ParseServerHello(const cJSON* root);
     void SendText(const std::string& text) override;
