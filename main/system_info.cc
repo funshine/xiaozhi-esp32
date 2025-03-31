@@ -86,7 +86,7 @@ esp_err_t SystemInfo::PrintRealTimeStats(TickType_t xTicksToWait) {
         goto exit;
     }
 
-    printf("| Task | Run Time | Percentage\n");
+    printf("| Task             | Run Time | Percentage\n");
     //Match each task in start_array to those in the end_array
     for (int i = 0; i < start_array_size; i++) {
         int k = -1;
