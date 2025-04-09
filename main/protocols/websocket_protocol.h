@@ -29,7 +29,7 @@ private:
 #endif
 
     void ParseServerHello(const cJSON* root);
-    void SendText(const std::string& text) override;
+    bool SendText(const std::string& text) override;
 };
 
 #endif
