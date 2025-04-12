@@ -44,7 +44,7 @@ config WEBSOCKET_URL
 
 config WEBSOCKET_URL_TEST
     depends on CONNECTION_TYPE_WEBSOCKET
-    string "Websocket URL"
+    string "Websocket URL Test"
     default "wss://api.tenclass.net/xiaozhi/v1/"
     help
         Communication with the server through websocket after wake up.
